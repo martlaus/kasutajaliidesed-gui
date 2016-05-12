@@ -1,0 +1,98 @@
+<div id="teacher-table" flex>
+  <div layout="row" layout-xs="column" flex>
+    <div layout="row" layout-xs="column" flex="0" flex-gt-md="5"></div>
+    <section flex flex-gt-md="90">
+      <div layout-gt-sm>
+        <article flex="100" flex-gt-sm="90" flex-gt-lg="90" class="md-padding" role="main">
+          <md-input-container>
+            <input ng-model="searchText" type="text"
+                   placeholder="Filter by" autofocus>
+
+          </md-input-container>
+
+          <md-table-container>
+            <table md-table md-row-select="true" multiple="true" ng-model="selected" md-progress="promise">
+              <thead md-head md-order="query.order" md-on-reorder="onReorder">
+              <tr md-row>
+                <th md-column md-order-by="bySubmittedBy">Tudeng</th>
+                <!--<th md-column md-order-by="bykt1">KT1</th>-->
+                <!--<th md-column md-order-by="bykt2">KT2</th>-->
+                <!--<th md-column md-order-by="bypraktiline1">Praks 1</th>-->
+                <!--<th md-column md-order-by="bypraktiline2">Praks 2</th>-->
+                <!--<th md-column md-order-by="eksam">Eksam</th>-->
+                <!--<th md-column md-order-by="eksam2">Järeleksam</th>-->
+
+
+                <th md-column ng-repeat="homework in homeworks"  md-order-by="eksam2">{{homework.name}}</th>
+
+                <th md-column >Keskmine</th>
+
+
+              </tr>
+              </thead>
+              <tbody md-body>
+              <tr md-row md-select="student" ng-repeat="student in students | filter:searchText | limitTo: query.limit : (query.page -1) * query.limit" class="md-list-item"
+                  md-on-select="logItem" md-auto-select="true">
+                <td md-cell>{{student.name}}</td>
+
+                <td md-cell ng-repeat="grade in student.grades">
+                  <md-input-container style="margin: 0px 0" ; margin-bottom: -20px;>
+                    <input class="low-border" ng-model="grade.grade"  data-ng-change="updateGrade(grade)" type="number" min="0" max="5">
+                  </md-input-container>
+
+                </td>
+
+                <td md-cell ng-repeat="grade in student.grades">
+                  {{getAverage(student.grades)}}
+
+                </td>
+
+                <!--<td md-cell>-->
+                  <!--<md-input-container style="margin: 0px 0" ; margin-bottom: -20px;>-->
+                    <!--<input class="low-border" value="{{student.kt1}}">-->
+                  <!--</md-input-container>-->
+
+                <!--</td>-->
+                <!--<td md-cell>-->
+                  <!--<md-input-container style="margin: 0px 0" ; margin-bottom: -20px;>-->
+                    <!--<input class="low-border" value="{{student.kt2}}">-->
+                  <!--</md-input-container>-->
+
+                <!--</td>-->
+                <!--<td md-cell>-->
+                  <!--<md-input-container style="margin: 0px 0" ; margin-bottom: -20px;>-->
+                    <!--<input class="low-border" value="{{student.praktiline1}}">-->
+                  <!--</md-input-container>-->
+
+                <!--</td>-->
+                <!--<td md-cell>-->
+                  <!--<md-input-container style="margin: 0px 0" ; margin-bottom: -20px;>-->
+                    <!--<input class="low-border" value="{{student.praktiline2}}">-->
+                  <!--</md-input-container>-->
+
+                <!--</td>-->
+                <!--<td md-cell>-->
+                  <!--<md-input-container style="margin: 0px 0" ; margin-bottom: -20px;>-->
+                    <!--<input class="low-border" value="{{student.eksam}}">-->
+                  <!--</md-input-container>-->
+
+                <!--</td>-->
+                <!--<td md-cell>-->
+                  <!--<md-input-container style="margin: 0px 0" ; margin-bottom: -20px;>-->
+                    <!--<input class="low-border" value="{{student.eksam2}}">-->
+                  <!--</md-input-container>-->
+
+                <!--</td>-->
+              </tr>
+              </tbody>
+            </table>
+          </md-table-container>
+          <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{students.length}}"
+                               md-on-paginate="onPaginate" md-page-select></md-table-pagination>
+        </article>
+
+        <div flex flex-gt-sm="5" flex-gt-lg="5" class="md-padding"></div>
+      </div>
+    </section>
+  </div>
+</div>

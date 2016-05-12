@@ -1,0 +1,56 @@
+<md-dialog aria-label="Registreerimise modaalaken" flex="30">
+  <md-toolbar class="md-hue-2">
+    <div layout-align="center start" layout="row" layout-sm="column">
+      <div class="md-toolbar-tools">
+        <h2>Registreeru</h2>
+        <span flex></span>
+        <md-button ng-click="hideLogin()" class="md-icon-button" aria-label="Sulge registreerimise modaalaken">
+          <md-icon>close</md-icon>
+        </md-button>
+      </div>
+    </div>
+  </md-toolbar>
+    <div class="md-padding" flex>
+        <div layout="column">
+          <form name="signUpForm">
+
+            <md-input-container class="md-block">
+              <label>Nimi</label>
+              <input required name="name" id="sign-up-name" data-ng-model="name">
+
+              <div data-ng-messages="signUpForm.name.$error">
+                <div data-ng-message="required">Nimi on kohustuslik</div>
+              </div>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+              <label>Üliõpilaskood</label>
+              <input required name="studentCode" id="login-personal-code" type="number" data-ng-model="studentCode">
+
+              <div data-ng-messages="signUpForm.studentCode.$error">
+                <div data-ng-message="required">Üliõpilaskood on kohustuslik</div>
+                <div data-ng-message="number">Üliõpilaskood peab olema number</div>
+
+              </div>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+              <label>Parool</label>
+              <input required name="password" id="password" type="password" ng-pattern="/.{6,}/" data-ng-model="password">
+
+              <div data-ng-messages="signUpForm.password.$error">
+                <div data-ng-message="required">Parool on kohustuslik</div>
+                <div data-ng-message="pattern">Parool peab olema vähemalt 6 tähemärki</div>
+
+              </div>
+
+            </md-input-container>
+            <md-button aria-label="Registreeru" class="md-raised md-primary"
+                       id="register" data-ng-click="signUp()" ng-disabled="loginButtonFlag || signUpForm.$invalid">
+              Regisreeru
+            </md-button>
+
+          </form>
+        </div>
+    </div>
+</md-dialog>

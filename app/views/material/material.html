@@ -1,0 +1,32 @@
+<div id="page-view-material" flex>
+  <div layout="row" layout-xs="column" flex>
+    <div layout="row" layout-xs="column" flex="0" flex-gt-md="15"></div>
+    <section flex flex-gt-md="80">
+      <div layout-gt-sm>
+        <article flex-gt-md="80" class="md-padding" role="main">
+          <md-list>
+            <md-list-item ng-repeat="result in results" ng-click="gotToResult(result.subject, result.type)" class="noright" layout="row">
+              <img alt="{{ result.subject }}" ng-src="images/yeoman.png" class="md-avatar"/>
+
+              <div class="md-list-item-text">
+                <h3>{{ result.subject }}</h3>
+
+                <p>{{result.type}}</p>
+              </div>
+
+              <span flex></span>
+              <span  style="padding-right: 1.4em; font-size: 150%; color:green" data-ng-if="result.result === 'Esitatud'">{{result.result}}</span>
+              <span  style="padding-right: 1.4em; font-size: 150%; " data-ng-if="result.result !== 'Esitatud'">{{result.result}}</span>
+
+              <md-icon ng-click="doSecondaryAction($event)" aria-label="Send Email"
+                       class="md-secondary md-hue-3">email
+              </md-icon>
+            </md-list-item>
+          </md-list>
+        </article>
+
+        <div flex flex-gt-md="10" class="md-padding"></div>
+      </div>
+    </section>
+  </div>
+</div>
