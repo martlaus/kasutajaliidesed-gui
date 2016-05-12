@@ -1,0 +1,56 @@
+<md-toolbar id="md-toolbar-header" class="md-whiteframe-1dp" data-click-outside="clickOutside()"
+            outside-if-not="header-show-detailed-search-icon, detailed-search">
+  <div class="md-toolbar-tools">
+    <!-- logo -->
+    <div>
+      <md-tooltip md-direction="right">
+        <span>Mine esilehele</span>
+      </md-tooltip>
+      <a data-ng-href="/#/" class="logo" id="logo">
+        <md-icon>home</md-icon>
+      </a>
+    </div>
+
+    <span flex hide-xs></span>
+    <!-- search bar with filter icon -->
+
+    <span layout="row" id="login-boxes" flex-gt-md="45" flex-gt-xs="100" layout-xs="100" flex>
+      <md-input-container flex flex-gt-sm="25" flex-xs="40" data-ng-hide="isAuthenticated()" style="padding-right: 1.1em;">
+        <input placeholder="Üliõpilaskood" data-ng-model="studentCode">
+      </md-input-container>
+
+
+    <md-input-container flex flex-gt-sm="30" data-ng-hide="isAuthenticated()">
+      <input type="password" placeholder="Parool" data-ng-model="password">
+    </md-input-container>
+
+    <md-button data-ng-hide="isAuthenticated()" data-ng-click="doLogin(studentCode, password)" flex flex-gt-sm="20">
+      <span class="black">Logi sisse</span>
+    </md-button>
+
+
+
+    <md-button data-ng-hide="isAuthenticated()" data-ng-click="register()" flex flex-gt-sm="20" hide-xs>
+      <span class="black">Registreeri</span>
+    </md-button>
+    </span>
+    <a data-ng-show="isAuthenticated() && !isAdmin()" href="#/student">
+      <md-button flex flex-gt-sm="20">
+        <span class="black">Minu tööd</span>
+      </md-button>
+    </a>
+
+    <a data-ng-show="isAuthenticated() && isAdmin()" href="#/teacher">
+      <md-button flex flex-gt-sm="20">
+        <span class="black">Hinded</span>
+      </md-button>
+    </a>
+
+    <md-button data-ng-hide="!isAuthenticated()" data-ng-click="logout()" flex flex-gt-sm="20">
+      <span class="black">Logi välja {{$root.user.name}}</span>
+    </md-button>
+
+
+  </div>
+</md-toolbar>
+

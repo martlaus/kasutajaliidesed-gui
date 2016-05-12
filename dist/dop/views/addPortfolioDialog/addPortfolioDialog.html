@@ -1,0 +1,63 @@
+<md-dialog flex-gt-sm="75" flex>
+  <md-toolbar class="md-accent">
+    <div class="md-toolbar-tools" flex>
+      <h2>Lisa uus kodutöö</h2>
+      <span flex></span>
+      <md-button ng-click="cancel()" class="md-icon-button">
+        <md-icon>close</md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-content class="md-padding">
+    <div layout="row" layout-align="start center">
+      <div flex="nogrow" class="md-padding">
+
+        <div data-ngf-drop ngf-select="upload(file)" ng-model="file" name="file" class="drop-box"
+             data-ngf-drag-over-class="'dragover'"
+             data-ngf-multiple="false"
+             layout="row"
+             layout-align="center center" flex>
+            <span layout="row" flex class="md-padding">
+              <span style="padding-right: 1.1em">Vali fail</span>
+              <md-icon>cloud_upload</md-icon>*
+            </span>
+        </div>
+        <md-tooltip>Vali fail</md-tooltip>
+      </div>
+      <md-input-container flex>
+        <label data-ng-if="!default.subject">Aine ja töö*</label>
+        <label data-ng-if="default.subject">{{default.subject}} - {{default.type}}</label>
+
+        <md-select ng-model="work">
+          <md-option ng-repeat="work in homeworks" value="{{work}}">{{work.subject.name}} - {{work.name}}</md-option>
+        </md-select>
+      </md-input-container>
+    </div>
+    <div layout="row" layout-align="start center">
+
+      <md-progress-linear class="md-warn" md-mode="buffer" value="{{progress}}"
+                          md-buffer-value="{{vm.determinateValue2}}"
+                          data-ng-show="uploading"></md-progress-linear>
+      <span data-ng-show="uploading">{{progress}}%</span>
+    </div>
+
+  </md-content>
+
+  <md-dialog-actions>
+    <span flex></span>
+    <md-button id="add-portfolio-cancel-button" data-ng-disabled="isSaving"
+               data-ng-click="cancel()">
+      Katkesta
+    </md-button>
+    <md-button id="add-portfolio-create-button"
+               data-ng-click="create()" data-ng-hide="isSaving" class="md-primary"
+               data-ng-disabled="!uploaded || !work">
+      <md-icon>arrow_forward</md-icon>
+      Lisa esitus
+    </md-button>
+
+    <md-progress-circular class="md-accent ng-hide" md-mode="indeterminate" md-diameter="40"
+                          data-ng-show="isSaving"></md-progress-circular>
+  </md-dialog-actions>
+  </form>
+</md-dialog>
